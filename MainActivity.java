@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -24,9 +26,10 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String[] author = new String[1];
                 author[0] = "author";
-                News news[] = {new News("Title", "Section", "Puspak", author),
-                        new News("Title", "Section", "Puspak", author)};
-                ArrayAdapter<News> theAdapter = new ArrayAdapter<News>(context, android.R.layout.simple_list_item_1, news);
+                ArrayList<News> newsList = new ArrayList<News>();
+                newsList.add(new News("title1","section1","date1",author));
+                //ArrayAdapter<News> theAdapter = new ArrayAdapter<News>(context, android.R.layout.simple_list_item_1, news);
+                NewsAdapter theAdapter = new NewsAdapter(MainActivity.this,newsList);
                 ListView listview = (ListView) findViewById(R.id.list_item);
                 listview.setAdapter(theAdapter);
             }
